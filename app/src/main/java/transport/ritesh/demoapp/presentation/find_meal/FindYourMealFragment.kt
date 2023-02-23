@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import transport.ritesh.demoapp.R
 import transport.ritesh.demoapp.databinding.FragmentFindYourMealBinding
 
 @AndroidEntryPoint
@@ -58,14 +62,21 @@ class FindYourMealFragment : Fragment() {
                 fragmentFindYourMealBinding.progressMealSearch.visibility = View.GONE
                 Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                 }
-                it.data?.let{
-                    if (it.isEmpty()) {
-                        fragmentFindYourMealBinding.nothingFound.visibility = View.VISIBLE
+                if(it.data?.isNotEmpty() == true) {
+                    it.data?.let {
+                        if (it.isEmpty()) {
+                            fragmentFindYourMealBinding.nothingFound.visibility = View.VISIBLE
+                        }
+                        fragmentFindYourMealBinding.progressMealSearch.visibility = View.GONE
+                        findYourMealAdapter.setContentList(it.toMutableList())
                     }
-                    fragmentFindYourMealBinding.progressMealSearch.visibility = View.GONE
-                    findYourMealAdapter.setContentList(it.toMutableList())
                 }
             }
+        }
+
+        findYourMealAdapter.itemClickListener {
+            val bundle = bundleOf(getString(R.string.mealId) to it.mealId)
+             findNavController().navigate(R.id.action_findYourMealFragment_to_mealDetailFragment,bundle)
         }
 
     }
