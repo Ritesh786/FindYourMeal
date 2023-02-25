@@ -7,7 +7,7 @@
 
         <variable
             name="meal"
-            type="transport.ritesh.demoapp.domain.model.Meal" />
+            type="transport.riteshdom.model.Meal" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
