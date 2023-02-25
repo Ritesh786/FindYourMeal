@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/findYourMealFragment"
-        android:name="transport.ritesh.demoapp.presentation.find_meal.FindYourMealFragment"
+        android:name="demo.demoapp.presentation.find_meal.FindYourMealFragment"
         android:label="FindYourMealFragment" >
         <action
             android:id="@+id/action_findYourMealFragment_to_mealDetailFragment"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/mealDetailFragment"
-        android:name="transport.ritesh.demoapp.presentation.meal_detail.MealDetailFragment"
+        android:name="demo.demoapp.presentation.meal_detail.MealDetailFragment"
         android:label="fragment_meal_detail"
         tools:layout="@layout/fragment_meal_detail" >
         <argument

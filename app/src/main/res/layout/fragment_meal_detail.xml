@@ -9,7 +9,7 @@
 
         <variable
             name="mealDetails"
-            type="transport.riteshdom.model.MealItemDetails" />
+            type="demo.demodomain.model.MealItemDetails" />
     </data>
 
 
