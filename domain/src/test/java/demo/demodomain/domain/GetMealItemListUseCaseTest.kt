@@ -6,14 +6,10 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
-
 import demo.demodomain.model.Meal
 import io.mockk.coEvery
 import junit.framework.TestCase
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.first
-import org.junit.After
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
@@ -36,7 +32,6 @@ class GetMealItemListUseCaseTest {
         output.collect{
             meal = it.data?.first()
         }
-
         assertEquals(
             mealList[0],
             meal

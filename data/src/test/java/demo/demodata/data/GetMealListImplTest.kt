@@ -25,11 +25,11 @@ class GetMealListImplTest {
         } returns dummyMealItemsDTO
 
         val mealItem  = Meal(dummyMealItemsDTO.meals[0].idMeal,dummyMealItemsDTO.meals[0].strMeal,dummyMealItemsDTO.meals[0].strMealThumb)
-        val getMealItemDto = getMealListImpl().getMealList("chicken")
+        val mealList = getMealListImpl().getMealList("chicken")
 
         assertEquals(
             mealItem,
-            getMealItemDto[0]
+            mealList[0]
         )
 
 

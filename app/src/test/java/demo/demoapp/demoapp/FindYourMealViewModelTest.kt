@@ -14,7 +14,8 @@ import demo.demoapp.presentation.find_meal.FindYourMealViewModel
 import demo.democommon.Resource
 import demo.demodomain.model.Meal
 import demo.demodomain.use_case.GetMealItemListUseCase
-
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class)
 class FindYourMealViewModelTest {
 
     @get:Rule
@@ -57,6 +58,7 @@ class FindYourMealViewModelTest {
             )
         }
     }
+
 
     @Test
     fun testSuccess() = runTest(coroutinesTestRule.testDispatcher) {
