@@ -36,7 +36,6 @@ class GetMealItemListUseCaseTest {
             mealList[0],
             meal
         )
-
     }
 
 }

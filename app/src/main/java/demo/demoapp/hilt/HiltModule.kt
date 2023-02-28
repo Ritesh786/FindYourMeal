@@ -8,10 +8,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import demo.democommon.Constants
 
 import demo.demodata.remote.FindYourMealAPi
-import demo.demodata.repository.GetMealDetailImpl
-import demo.demodata.repository.GetMealListImpl
+import demo.demodata.repository.FindYourMealRepositoryImpl
 import demo.demodomain.repository.FindYourMealRepository
-import demo.demodomain.repository.GetMealDetailsRepository
 
 import javax.inject.Singleton
 
@@ -26,16 +24,9 @@ object HiltModule {
             .create(FindYourMealAPi::class.java)
     }
 
-    // for getting MealRepository
     @Provides
     fun provideFindYourMealRepository(findYourMealAPi: FindYourMealAPi): FindYourMealRepository {
-        return GetMealListImpl(findYourMealAPi)
+        return FindYourMealRepositoryImpl(findYourMealAPi)
     }
-
-   // for getting MealDetailRepository
-   @Provides
-   fun provideMealDetailsRepository(findYourMealAPi: FindYourMealAPi): GetMealDetailsRepository {
-       return GetMealDetailImpl(findYourMealAPi)
-   }
 
 }

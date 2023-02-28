@@ -8,7 +8,6 @@ import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import org.junit.Rule
 import org.junit.Test
-
 import demo.demoapp.presentation.find_meal.FindYourMealState
 import demo.demoapp.presentation.find_meal.FindYourMealViewModel
 import demo.democommon.Resource

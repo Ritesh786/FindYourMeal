@@ -10,11 +10,11 @@ import java.io.IOException
 import javax.inject.Inject
 
 class GetMealItemListUseCase
-@Inject constructor(private val repository: FindYourMealRepository)  {
+@Inject constructor(private val findYourMealRepository: FindYourMealRepository)  {
     operator fun invoke(s:String):Flow<Resource<List<Meal>>> = flow {
        try {
           emit(Resource.Loading())
-          val response = repository.getMealList(s)
+          val response = findYourMealRepository.getMealList(s)
           val mealList = if(response.isEmpty()) emptyList<Meal>() else response
           emit(Resource.Success(data = mealList))
        }catch (e:HttpException){
