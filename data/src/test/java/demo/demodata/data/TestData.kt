@@ -6,8 +6,8 @@ import demo.demodomain.model.Meal
 
 fun getDummyMealDto() = MealDTO(
     idMeal = "1234",
-    strMeal = "description",
-    strMealThumb = "imageUrl",
+    strMeal = "chicken",
+    strMealThumb = "https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg",
     dateModified = "",
     strArea = "",
     strCategory = "",
