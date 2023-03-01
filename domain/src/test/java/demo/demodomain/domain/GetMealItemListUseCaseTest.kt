@@ -4,13 +4,9 @@ import demo.demodomain.repository.FindYourMealRepository
 import demo.demodomain.use_case.GetMealItemListUseCase
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import demo.demodomain.model.Meal
 import io.mockk.coEvery
-import junit.framework.TestCase
-import kotlinx.coroutines.flow.first
-import org.junit.Rule
 import org.junit.Test
 
 class GetMealItemListUseCaseTest {

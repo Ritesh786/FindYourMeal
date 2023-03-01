@@ -1,10 +1,8 @@
 package demo.demodomain.domain
 
-import demo.demodomain.model.Meal
 import demo.demodomain.model.MealItemDetails
 import demo.demodomain.repository.FindYourMealRepository
 import demo.demodomain.use_case.GetMealDetailUseCase
-import demo.demodomain.use_case.GetMealItemListUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking

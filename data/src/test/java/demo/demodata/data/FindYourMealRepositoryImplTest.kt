@@ -5,7 +5,6 @@ import demo.demodata.mapper.toDomainMealItemDetails
 import demo.demodata.model.MealItemsDTO
 import demo.demodata.remote.FindYourMealAPi
 import demo.demodata.repository.FindYourMealRepositoryImpl
-import demo.demodomain.model.Meal
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking

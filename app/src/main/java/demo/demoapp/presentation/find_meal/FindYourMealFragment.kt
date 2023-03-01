@@ -52,22 +52,24 @@ class FindYourMealFragment : Fragment() {
         lifecycle.coroutineScope.launchWhenCreated {
             findYourMealViewModel.findYourMealList.collect{
                 if(it.isLoading){
-                    fragmentFindYourMealBinding?.nothingFound?.visibility = View.GONE
                     fragmentFindYourMealBinding?.progressMealSearch?.visibility = View.VISIBLE
-                }
-                if(it.error.isNotBlank()){
-                fragmentFindYourMealBinding?.nothingFound?.visibility = View.GONE
+                    fragmentFindYourMealBinding?.mealSearchRecycler?.visibility = View.GONE
+                    fragmentFindYourMealBinding?.nothingFound?.visibility = View.GONE
+                }else if(it.error.isNotBlank()){
+                fragmentFindYourMealBinding?.nothingFound?.visibility = View.VISIBLE
                 fragmentFindYourMealBinding?.progressMealSearch?.visibility = View.GONE
+                fragmentFindYourMealBinding?.mealSearchRecycler?.visibility = View.GONE
                 Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
-                }
-                if(it.data?.isNotEmpty() == true) {
-                    it.data?.let {
-                        if (it.isEmpty()) {
-                            fragmentFindYourMealBinding?.nothingFound?.visibility = View.VISIBLE
-                        }
+                }else if(it.data?.isNotEmpty() == true) {
+                    it.data.let { mealList ->
                         fragmentFindYourMealBinding?.progressMealSearch?.visibility = View.GONE
-                        findYourMealAdapter.setContentList(it.toMutableList())
+                        fragmentFindYourMealBinding?.mealSearchRecycler?.visibility = View.VISIBLE
+                        fragmentFindYourMealBinding?.nothingFound?.visibility = View.GONE
+                        findYourMealAdapter.setContentList(mealList.toMutableList())
                     }
+                }else{
+                       fragmentFindYourMealBinding?.nothingFound?.visibility = View.VISIBLE
+                       fragmentFindYourMealBinding?.mealSearchRecycler?.visibility = View.GONE
                 }
             }
         }

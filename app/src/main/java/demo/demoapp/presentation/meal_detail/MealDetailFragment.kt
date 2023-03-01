@@ -19,9 +19,7 @@ import demo.demoapp.databinding.FragmentMealDetailBinding
 class MealDetailFragment : Fragment() {
     private var fragmentMealDetailBinding : FragmentMealDetailBinding? = null
     private val mealDetailViewModel: MealDetailViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,14 +37,19 @@ class MealDetailFragment : Fragment() {
         lifecycle.coroutineScope.launchWhenCreated {
             mealDetailViewModel.mealDetails.collect{
                 if(it.isLoading == true){
-                //todo Add ProgressBar here
+                    fragmentMealDetailBinding?.rlProgressBar?.visibility = View.VISIBLE
+                    fragmentMealDetailBinding?.nsvDetail?.visibility = View.GONE
                 }
                 if(it.error?.isNotBlank() == true){
+                fragmentMealDetailBinding?.rlProgressBar?.visibility = View.GONE
+                fragmentMealDetailBinding?.nsvDetail?.visibility = View.GONE
                 Toast.makeText(requireContext(),it.error,Toast.LENGTH_SHORT).show()
                 }
                 if(it.data != null){
-                    it.data?.let {
-                        fragmentMealDetailBinding?.mealDetails = it
+                    it.data.let { mealItemDetails ->
+                        fragmentMealDetailBinding?.rlProgressBar?.visibility = View.GONE
+                        fragmentMealDetailBinding?.nsvDetail?.visibility = View.VISIBLE
+                        fragmentMealDetailBinding?.mealDetails = mealItemDetails
                     }
 
                 }
