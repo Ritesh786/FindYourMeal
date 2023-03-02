@@ -7,4 +7,6 @@
     <string name="instructions">Instructions :</string>
     <string name="required_items">Required Items :</string>
     <string name="search_meal">Find Your Meal here....</string>
+    <string name="corriander_str">Corriander</string>
+    <string name="spoon_str">2 tea spoon</string>
 </resources>

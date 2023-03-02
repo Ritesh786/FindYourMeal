@@ -14,10 +14,10 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="@dimen/dimen_8dp"
         android:orientation="vertical"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
+        app:cardCornerRadius="@dimen/dimen_8dp"
+        app:cardElevation="@dimen/dimen_4dp">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             <ImageView
                 android:id="@+id/view_holder_image"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="@dimen/dimen_220dp"
                 android:scaleType="fitXY"
                 android:src="@color/black"
                 app:urlToImage="@{meal.image}"
@@ -39,7 +39,7 @@
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
+                android:padding="@dimen/dimen_8dp"
                 android:text="@{meal.name}"
                 tools:text="Chicken" />
 
