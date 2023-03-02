@@ -2,17 +2,17 @@ package demo.demodomain.domain
 
 import demo.demodomain.model.MealItemDetails
 import demo.demodomain.repository.FindYourMealRepository
-import demo.demodomain.use_case.GetMealDetailUseCase
+import demo.demodomain.use_case.GetMealDetailUseCaseImpl
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Test
 
-class GetMealDetailUseCaseTest{
+class GetMealDetailUseCaseImplTest{
     private val findYourMealRepository = mockk<FindYourMealRepository>()
 
-    private fun getMealDetailUseCase(): GetMealDetailUseCase = GetMealDetailUseCase(
+    private fun getMealDetailUseCase(): GetMealDetailUseCaseImpl = GetMealDetailUseCaseImpl(
         findYourMealRepository
     )
 
@@ -28,6 +28,7 @@ class GetMealDetailUseCaseTest{
         output.collect{
             mealDetail = it.data
         }
+
         assertEquals(
             dummyMealDetail,
             mealDetail

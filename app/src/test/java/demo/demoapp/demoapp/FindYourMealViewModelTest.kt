@@ -14,6 +14,7 @@ import demo.democommon.Resource
 import demo.demodomain.model.Meal
 import demo.demodomain.use_case.GetMealItemListUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+
 @OptIn(ExperimentalCoroutinesApi::class)
 class FindYourMealViewModelTest {
 
@@ -28,7 +29,6 @@ class FindYourMealViewModelTest {
 
     @Test
     fun testLoading() = runTest(coroutinesTestRule.testDispatcher) {
-
         val result : Flow<Resource<List<Meal>>> = flow {
             emit(Resource.Loading())
         }
@@ -65,6 +65,7 @@ class FindYourMealViewModelTest {
             emit(Resource.Success(data = listOf(Meal("52920", "Chicken","https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg"))))
         }
         coEvery { getMealItemListUseCase.invoke("Chicken") } returns result
+
         findYourViewModel().findYourMealList.test{
             assertEquals(
                 awaitItem(),

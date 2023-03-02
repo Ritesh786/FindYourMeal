@@ -4,21 +4,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import demo.democommon.Resource
+import demo.demodomain.use_case.GetMealItemListUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-
-import demo.demodomain.use_case.GetMealItemListUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class FindYourMealViewModel
-@Inject constructor(private val getMealItemListUseCase: GetMealItemListUseCase) : ViewModel() {
+@Inject constructor(private val getMealItemListUse: GetMealItemListUseCase) : ViewModel() {
     private val _findYourMealList = MutableStateFlow<FindYourMealState>(FindYourMealState())
     val findYourMealList : StateFlow<FindYourMealState> = _findYourMealList
     fun findYourMealList(s:String){
-        getMealItemListUseCase(s).onEach {
+        getMealItemListUse(s).onEach {
             when (it){
                is Resource.Loading -> {
                    _findYourMealList.value = FindYourMealState(isLoading = true)

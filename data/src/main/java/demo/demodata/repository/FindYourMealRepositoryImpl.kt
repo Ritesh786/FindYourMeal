@@ -7,7 +7,6 @@ import demo.demodomain.model.Meal
 import demo.demodomain.model.MealItemDetails
 import demo.demodomain.repository.FindYourMealRepository
 
-
 class FindYourMealRepositoryImpl(private val findYourMealAPi: FindYourMealAPi) : FindYourMealRepository {
     override suspend fun getMealList(s: String): List<Meal> {
         return findYourMealAPi.getMealItemList(s).meals.map{ it.toDomainMeal() }

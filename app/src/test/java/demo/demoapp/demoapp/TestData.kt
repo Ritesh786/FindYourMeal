@@ -2,7 +2,6 @@ package demo.demoapp.demoapp
 
 import demo.demodomain.model.MealItemDetails
 
-
 fun getDummyMealDetail() = MealItemDetails(
  name="potato",
  image="https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg",

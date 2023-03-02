@@ -4,7 +4,6 @@ import demo.demodata.model.MealDTO
 import demo.demodomain.model.Meal
 import demo.demodomain.model.MealItemDetails
 
-
 fun getDummyMealDto() = MealDTO(
     idMeal = "1234",
     strMeal = "chicken",

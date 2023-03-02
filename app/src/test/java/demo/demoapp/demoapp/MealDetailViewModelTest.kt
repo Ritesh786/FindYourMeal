@@ -15,6 +15,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+
 @OptIn(ExperimentalCoroutinesApi::class)
 class MealDetailViewModelTest{
     @get:Rule
@@ -28,7 +29,6 @@ class MealDetailViewModelTest{
 
     @Test
     fun testLoading() = runTest(coroutinesTestRule.testDispatcher) {
-
         val result : Flow<Resource<MealItemDetails>> = flow {
             emit(Resource.Loading())
         }

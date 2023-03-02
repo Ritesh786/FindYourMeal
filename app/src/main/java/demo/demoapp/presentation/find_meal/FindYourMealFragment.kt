@@ -15,7 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import demo.demoapp.R
 import demo.demoapp.databinding.FragmentFindYourMealBinding
 
-
 @AndroidEntryPoint
 class FindYourMealFragment : Fragment() {
     private var fragmentFindYourMealBinding : FragmentFindYourMealBinding? = null

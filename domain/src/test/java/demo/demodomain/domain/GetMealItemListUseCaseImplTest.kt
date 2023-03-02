@@ -1,7 +1,7 @@
 package demo.demodomain.domain
 
 import demo.demodomain.repository.FindYourMealRepository
-import demo.demodomain.use_case.GetMealItemListUseCase
+import demo.demodomain.use_case.GetMealItemListUseCaseImpl
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
@@ -9,13 +9,11 @@ import demo.demodomain.model.Meal
 import io.mockk.coEvery
 import org.junit.Test
 
-class GetMealItemListUseCaseTest {
+class GetMealItemListUseCaseImplTest {
     private val findYourMealRepository = mockk<FindYourMealRepository>()
-
-    private fun getMealItemListUseCase(): GetMealItemListUseCase = GetMealItemListUseCase(
+    private fun getMealItemListUseCase(): GetMealItemListUseCaseImpl = GetMealItemListUseCaseImpl(
         findYourMealRepository
     )
-
     @Test
     fun testMealItemList() = runBlocking {
         val mealList = listOf(Meal("52920", "Chicken","https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg"))
@@ -28,6 +26,7 @@ class GetMealItemListUseCaseTest {
         output.collect{
             meal = it.data?.first()
         }
+
         assertEquals(
             mealList[0],
             meal

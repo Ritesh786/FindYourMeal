@@ -38,6 +38,7 @@ class FindYourMealRepositoryImplTest {
         coEvery {
             findYourMealAPi.getMealDetails("1234")
         } returns dummyMealItemDTO
+
         val dummyMealDetail = dummyMealItemDTO.meals[0].toDomainMealItemDetails()
         val mealDetail = getMealListImpl().getMealDetails("1234")
 

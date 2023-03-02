@@ -4,12 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import demo.democommon.Resource
+import demo.demodomain.use_case.GetMealDetailUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-
-import demo.demodomain.use_case.GetMealDetailUseCase
 import javax.inject.Inject
 
 @HiltViewModel
