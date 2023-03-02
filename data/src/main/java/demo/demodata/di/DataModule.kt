@@ -1,4 +1,4 @@
-package demo.demoapp.hilt
+package demo.demodata.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -6,16 +6,14 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import demo.democommon.Constants
-
 import demo.demodata.remote.FindYourMealAPi
 import demo.demodata.repository.FindYourMealRepositoryImpl
 import demo.demodomain.repository.FindYourMealRepository
-
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object HiltModule {
+object DataModule {
     @Provides
     @Singleton
     fun provideFindYourMealAPi(): FindYourMealAPi {
