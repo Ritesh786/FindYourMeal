@@ -20,9 +20,6 @@ class FindYourMealFragment : Fragment() {
     private var fragmentFindYourMealBinding : FragmentFindYourMealBinding? = null
     private val findYourMealViewModel : FindYourMealViewModel by viewModels()
     private val findYourMealAdapter = FindYourMealAdapter()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

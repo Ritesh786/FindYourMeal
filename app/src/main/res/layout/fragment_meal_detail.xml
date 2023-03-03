@@ -42,7 +42,7 @@
             android:minHeight="@dimen/dimen_55dp"
             android:text="@{mealDetails.name}"
             android:textColor="@color/black"
-            tools:text="Chicken Handi" />
+            tools:text="@string/handi_str" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient1}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -152,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient2}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -178,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient3}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -204,7 +204,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient4}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -230,7 +230,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient5}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -256,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient6}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -282,7 +282,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient7}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -308,7 +308,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient8}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -334,7 +334,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient9}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -360,7 +360,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient10}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -386,7 +386,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient11}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -412,7 +412,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient12}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -438,7 +438,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient13}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -464,7 +464,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient14}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -490,7 +490,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient15}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -516,7 +516,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient16}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -542,7 +542,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient17}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -568,7 +568,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient18}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -594,7 +594,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient19}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView
@@ -620,7 +620,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@{mealDetails.ingredient20}"
-                    tools:text="@string/corriander_str" />
+                    tools:text="@string/coriander_str" />
 
 
                 <TextView

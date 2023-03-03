@@ -11,7 +11,7 @@ class FindYourMealAdapter : RecyclerView.Adapter<FindYourMealAdapter.MyViewHolde
 
     private var listener :((Meal)->Unit)?=null
 
-    var list = mutableListOf<Meal>()
+    private var list = mutableListOf<Meal>()
 
     fun setContentList(list: MutableList<Meal>) {
         this.list = list

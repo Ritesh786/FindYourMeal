@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">FindYourMeal</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mealId">mealId</string>
     <string name="nothing_found">Nothing Found</string>
     <string name="instructions">Instructions :</string>
     <string name="required_items">Required Items :</string>
     <string name="search_meal">Find Your Meal here....</string>
-    <string name="corriander_str">Corriander</string>
+    <string name="coriander_str">Coriander</string>
     <string name="spoon_str">2 tea spoon</string>
+    <string name="handi_str">Chicken Handi</string>
 </resources>

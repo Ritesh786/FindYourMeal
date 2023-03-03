@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FindYourMealViewModel
 @Inject constructor(private val getMealItemListUse: GetMealItemListUseCase) : ViewModel() {
-    private val _findYourMealList = MutableStateFlow<FindYourMealState>(FindYourMealState())
+    private val _findYourMealList = MutableStateFlow(FindYourMealState())
     val findYourMealList : StateFlow<FindYourMealState> = _findYourMealList
     fun findYourMealList(s:String){
         getMealItemListUse(s).onEach {

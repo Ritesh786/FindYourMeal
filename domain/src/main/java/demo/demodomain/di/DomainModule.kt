@@ -1,6 +1,5 @@
 package demo.demodomain.di
 
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

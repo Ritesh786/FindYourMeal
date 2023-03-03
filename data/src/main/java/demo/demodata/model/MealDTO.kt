@@ -1,8 +1,5 @@
 package demo.demodata.model
 
-import demo.demodomain.model.Meal
-import demo.demodomain.model.MealItemDetails
-
 data class MealDTO(
     val dateModified: String?,
     val idMeal: String?,

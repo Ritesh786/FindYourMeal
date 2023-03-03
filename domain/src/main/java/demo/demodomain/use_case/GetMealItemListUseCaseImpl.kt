@@ -15,7 +15,7 @@ class GetMealItemListUseCaseImpl
        try {
           emit(Resource.Loading())
           val response = findYourMealRepository.getMealList(s)
-          val mealList = response.ifEmpty { emptyList<Meal>() }
+          val mealList = response.ifEmpty { emptyList() }
           emit(Resource.Success(data = mealList))
        }catch (e:HttpException){
            emit(Resource.Error(message = e.localizedMessage?:"unknown error"))
