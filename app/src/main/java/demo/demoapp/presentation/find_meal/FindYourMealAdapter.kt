@@ -8,18 +8,9 @@ import demo.demoapp.databinding.ViewHolderSearchListBinding
 import demo.demodomain.model.Meal
 
 class FindYourMealAdapter : RecyclerView.Adapter<FindYourMealAdapter.MyViewHolder>() {
-
     private var listener :((Meal)->Unit)?=null
 
     private var list = mutableListOf<Meal>()
-
-    fun setContentList(list: MutableList<Meal>) {
-        this.list = list
-        notifyDataSetChanged()
-    }
-
-    class MyViewHolder(val viewHolder: ViewHolderSearchListBinding) :
-        RecyclerView.ViewHolder(viewHolder.root)
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -30,10 +21,6 @@ class FindYourMealAdapter : RecyclerView.Adapter<FindYourMealAdapter.MyViewHolde
         return MyViewHolder(binding)
     }
 
-    fun itemClickListener(l:(Meal)->Unit){
-        listener= l
-    }
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.viewHolder.meal = this.list[position]
 
@@ -42,10 +29,21 @@ class FindYourMealAdapter : RecyclerView.Adapter<FindYourMealAdapter.MyViewHolde
                 it(this.list[position])
             }
         }
-
     }
 
     override fun getItemCount(): Int {
         return this.list.size
     }
+
+    fun setContentList(list: MutableList<Meal>) {
+        this.list = list
+        notifyDataSetChanged()
+    }
+
+    fun itemClickListener(l:(Meal)->Unit){
+        listener= l
+    }
+
+    class MyViewHolder(val viewHolder: ViewHolderSearchListBinding) :
+        RecyclerView.ViewHolder(viewHolder.root)
 }

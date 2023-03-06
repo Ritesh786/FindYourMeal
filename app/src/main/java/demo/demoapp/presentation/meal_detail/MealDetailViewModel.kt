@@ -13,8 +13,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MealDetailViewModel @Inject constructor(private val getMealDetailUseCase: GetMealDetailUseCase): ViewModel(){
+
     private val _mealDetails = MutableStateFlow<MealDetailState>(MealDetailState())
     val mealDetails : StateFlow<MealDetailState> = _mealDetails
+
     fun getMealDetails(id: String){
         getMealDetailUseCase(id).onEach {
             when (it){

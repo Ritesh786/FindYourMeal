@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import demo.demoapp.R
@@ -17,6 +18,7 @@ import demo.demoapp.databinding.FragmentFindYourMealBinding
 
 @AndroidEntryPoint
 class FindYourMealFragment : Fragment() {
+
     private var fragmentFindYourMealBinding : FragmentFindYourMealBinding? = null
     private val findYourMealViewModel : FindYourMealViewModel by viewModels()
     private val findYourMealAdapter = FindYourMealAdapter()
@@ -45,27 +47,35 @@ class FindYourMealFragment : Fragment() {
             adapter = findYourMealAdapter
         }
 
-        lifecycle.coroutineScope.launchWhenCreated {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             findYourMealViewModel.findYourMealList.collect{
                 if(it.isLoading){
-                    fragmentFindYourMealBinding?.progressMealSearch?.visibility = View.VISIBLE
-                    fragmentFindYourMealBinding?.mealSearchRecycler?.visibility = View.GONE
-                    fragmentFindYourMealBinding?.nothingFound?.visibility = View.GONE
+                    fragmentFindYourMealBinding.apply{
+                        this?.progressMealSearch?.visibility = View.VISIBLE
+                        this?.mealSearchRecycler?.visibility = View.GONE
+                        this?.nothingFound?.visibility = View.GONE
+                    }
                 }else if(it.error.isNotBlank()){
-                fragmentFindYourMealBinding?.nothingFound?.visibility = View.VISIBLE
-                fragmentFindYourMealBinding?.progressMealSearch?.visibility = View.GONE
-                fragmentFindYourMealBinding?.mealSearchRecycler?.visibility = View.GONE
+                    fragmentFindYourMealBinding.apply {
+                        this?.nothingFound?.visibility = View.VISIBLE
+                        this?.progressMealSearch?.visibility = View.GONE
+                        this?.mealSearchRecycler?.visibility = View.GONE
+                    }
                 Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                 }else if(it.data?.isNotEmpty() == true) {
                     it.data.let { mealList ->
-                        fragmentFindYourMealBinding?.progressMealSearch?.visibility = View.GONE
-                        fragmentFindYourMealBinding?.mealSearchRecycler?.visibility = View.VISIBLE
-                        fragmentFindYourMealBinding?.nothingFound?.visibility = View.GONE
+                        fragmentFindYourMealBinding.apply {
+                         this?.progressMealSearch?.visibility = View.GONE
+                         this?.mealSearchRecycler?.visibility = View.VISIBLE
+                         this?.nothingFound?.visibility = View.GONE
+                        }
                         findYourMealAdapter.setContentList(mealList.toMutableList())
                     }
                 }else{
-                       fragmentFindYourMealBinding?.nothingFound?.visibility = View.VISIBLE
-                       fragmentFindYourMealBinding?.mealSearchRecycler?.visibility = View.GONE
+                    fragmentFindYourMealBinding.apply {
+                        this?.nothingFound?.visibility = View.VISIBLE
+                        this?.mealSearchRecycler?.visibility = View.GONE
+                    }
                 }
             }
         }

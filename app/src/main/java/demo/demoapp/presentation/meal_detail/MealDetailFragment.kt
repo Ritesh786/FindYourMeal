@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +24,6 @@ class MealDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         fragmentMealDetailBinding = FragmentMealDetailBinding.inflate(inflater,container,false)
         return fragmentMealDetailBinding?.root
     }
@@ -33,24 +33,29 @@ class MealDetailFragment : Fragment() {
         arguments?.getString(getString(R.string.mealId))?.let {
             mealDetailViewModel.getMealDetails(it)
         }
-        lifecycle.coroutineScope.launchWhenCreated {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             mealDetailViewModel.mealDetails.collect{
                 if(it.isLoading == true){
-                    fragmentMealDetailBinding?.rlProgressBar?.visibility = View.VISIBLE
-                    fragmentMealDetailBinding?.nsvDetail?.visibility = View.GONE
+                    fragmentMealDetailBinding.apply {
+                        this?.rlProgressBar?.visibility = View.VISIBLE
+                        this?.nsvDetail?.visibility = View.GONE
+                    }
                 }
                 if(it.error?.isNotBlank() == true){
-                fragmentMealDetailBinding?.rlProgressBar?.visibility = View.GONE
-                fragmentMealDetailBinding?.nsvDetail?.visibility = View.GONE
+                    fragmentMealDetailBinding.apply {
+                        this?.rlProgressBar?.visibility = View.GONE
+                        this?.nsvDetail?.visibility = View.GONE
+                    }
                 Toast.makeText(requireContext(),it.error,Toast.LENGTH_SHORT).show()
                 }
                 if(it.data != null){
                     it.data.let { mealItemDetails ->
-                        fragmentMealDetailBinding?.rlProgressBar?.visibility = View.GONE
-                        fragmentMealDetailBinding?.nsvDetail?.visibility = View.VISIBLE
-                        fragmentMealDetailBinding?.mealDetails = mealItemDetails
+                        fragmentMealDetailBinding.apply {
+                            this?.rlProgressBar?.visibility = View.GONE
+                            this?.nsvDetail?.visibility = View.VISIBLE
+                            this?.mealDetails = mealItemDetails
+                        }
                     }
-
                 }
             }
         }
