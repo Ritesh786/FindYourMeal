@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import demo.demoapp.databinding.FragmentBaseBinding
 
 abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val layoutResId : Int) : Fragment() {
 
@@ -27,20 +26,12 @@ abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val layoutRe
         return baseBinding.root
     }
 
-    protected open fun showProgressBar(progressBar : View){
-        progressBar.visibility = View.VISIBLE
+    protected open fun showView(view : View){
+        view.visibility = View.VISIBLE
     }
 
-    protected open fun hideProgressBar(progressBar : View){
-        progressBar.visibility = View.GONE
-    }
-
-    protected open fun showNothingText(textView : View){
-        textView.visibility = View.VISIBLE
-    }
-
-    protected open fun hideNothingText(textView : View){
-        textView.visibility = View.GONE
+    protected open fun hideView(view : View){
+        view.visibility = View.GONE
     }
 
     override fun onDestroyView() {

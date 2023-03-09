@@ -1,21 +1,16 @@
 package demo.demoapp.presentation.find_meal
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import demo.demoapp.BaseFragment
 import demo.demoapp.R
-import demo.demoapp.databinding.FragmentBaseBinding
 import demo.demoapp.databinding.FragmentFindYourMealBinding
 
 @AndroidEntryPoint
@@ -46,15 +41,15 @@ class FindYourMealFragment : BaseFragment<FragmentFindYourMealBinding>(R.layout.
                 if(it.isLoading){
                     with(baseBinding){
                         this.mealSearchRecycler.visibility = View.GONE
-                        this.nothingFound.visibility = View.GONE
                     }
-                    showProgressBar(baseBinding.progressMealSearch)
+                    showView(baseBinding.progressMealSearch)
+                    hideView(baseBinding.nothingFound)
                 }else if(it.error.isNotBlank()){
                     with(baseBinding) {
-                        this.nothingFound.visibility = View.VISIBLE
                         this.mealSearchRecycler.visibility = View.GONE
                     }
-                    hideProgressBar(baseBinding.progressMealSearch)
+                    hideView(baseBinding.progressMealSearch)
+                    showView(baseBinding.nothingFound)
                 Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                 }else if(it.data?.isNotEmpty() == true) {
                     it.data.let { mealList ->
@@ -62,14 +57,15 @@ class FindYourMealFragment : BaseFragment<FragmentFindYourMealBinding>(R.layout.
                          this.mealSearchRecycler.visibility = View.VISIBLE
                          this.nothingFound.visibility = View.GONE
                         }
-                        hideProgressBar(baseBinding.progressMealSearch)
+                        hideView(baseBinding.progressMealSearch)
+                        hideView(baseBinding.nothingFound)
                         findYourMealAdapter.setContentList(mealList.toMutableList())
                     }
                 }else{
                     with(baseBinding){
-                        this.nothingFound.visibility = View.VISIBLE
                         this.mealSearchRecycler.visibility = View.GONE
                     }
+                    showView(baseBinding.nothingFound)
                 }
             }
         }
