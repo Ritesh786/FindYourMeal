@@ -12,55 +12,49 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 
 import dagger.hilt.android.AndroidEntryPoint
+import demo.demoapp.BaseFragment
 import demo.demoapp.R
 import demo.demoapp.databinding.FragmentMealDetailBinding
 
 @AndroidEntryPoint
-class MealDetailFragment : Fragment() {
-    private var fragmentMealDetailBinding : FragmentMealDetailBinding? = null
-    private val mealDetailViewModel: MealDetailViewModel by viewModels()
+class MealDetailFragment : BaseFragment<FragmentMealDetailBinding>(R.layout.fragment_meal_detail){
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        fragmentMealDetailBinding = FragmentMealDetailBinding.inflate(inflater,container,false)
-        return fragmentMealDetailBinding?.root
-    }
+    private val mealDetailViewModel: MealDetailViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.getString(getString(R.string.mealId))?.let {
             mealDetailViewModel.getMealDetails(it)
         }
+
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             mealDetailViewModel.mealDetails.collect{
                 if(it.isLoading == true){
-                    fragmentMealDetailBinding.apply {
-                        this?.rlProgressBar?.visibility = View.VISIBLE
-                        this?.nsvDetail?.visibility = View.GONE
+                    with(baseBinding){
+                        this.nsvDetail.visibility = View.GONE
                     }
+                    showProgressBar(baseBinding.rlProgressBar)
                 }
                 if(it.error?.isNotBlank() == true){
-                    fragmentMealDetailBinding.apply {
-                        this?.rlProgressBar?.visibility = View.GONE
-                        this?.nsvDetail?.visibility = View.GONE
+                    with(baseBinding){
+                        this.nsvDetail.visibility = View.GONE
                     }
-                Toast.makeText(requireContext(),it.error,Toast.LENGTH_SHORT).show()
+                    hideProgressBar(baseBinding.rlProgressBar)
+                    Toast.makeText(requireContext(),it.error,Toast.LENGTH_SHORT).show()
                 }
                 if(it.data != null){
                     it.data.let { mealItemDetails ->
-                        fragmentMealDetailBinding.apply {
-                            this?.rlProgressBar?.visibility = View.GONE
-                            this?.nsvDetail?.visibility = View.VISIBLE
-                            this?.mealDetails = mealItemDetails
+                        with(baseBinding){
+                            this.nsvDetail.visibility = View.VISIBLE
+                            this.mealDetails = mealItemDetails
                         }
                     }
+                    hideProgressBar(baseBinding.rlProgressBar)
                 }
             }
         }
 
-        fragmentMealDetailBinding?.detailsBackArrow?.setOnClickListener {
+        baseBinding.detailsBackArrow.setOnClickListener {
             findNavController().popBackStack()
         }
 

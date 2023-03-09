@@ -13,25 +13,19 @@ import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import demo.demoapp.BaseFragment
 import demo.demoapp.R
+import demo.demoapp.databinding.FragmentBaseBinding
 import demo.demoapp.databinding.FragmentFindYourMealBinding
 
 @AndroidEntryPoint
-class FindYourMealFragment : Fragment() {
+class FindYourMealFragment : BaseFragment<FragmentFindYourMealBinding>(R.layout.fragment_find_your_meal) {
 
-    private var fragmentFindYourMealBinding : FragmentFindYourMealBinding? = null
     private val findYourMealViewModel : FindYourMealViewModel by viewModels()
     private val findYourMealAdapter = FindYourMealAdapter()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        fragmentFindYourMealBinding = FragmentFindYourMealBinding.inflate(inflater,container,false)
-        return fragmentFindYourMealBinding?.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-       fragmentFindYourMealBinding?.mealSearchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+        baseBinding.mealSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
            android.widget.SearchView.OnQueryTextListener {
            override fun onQueryTextSubmit(query: String?): Boolean {
               query?.let {
@@ -43,38 +37,38 @@ class FindYourMealFragment : Fragment() {
               return false
            }
        })
-        fragmentFindYourMealBinding?.mealSearchRecycler?.apply {
+        baseBinding.mealSearchRecycler.apply {
             adapter = findYourMealAdapter
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             findYourMealViewModel.findYourMealList.collect{
                 if(it.isLoading){
-                    fragmentFindYourMealBinding.apply{
-                        this?.progressMealSearch?.visibility = View.VISIBLE
-                        this?.mealSearchRecycler?.visibility = View.GONE
-                        this?.nothingFound?.visibility = View.GONE
+                    with(baseBinding){
+                        this.mealSearchRecycler.visibility = View.GONE
+                        this.nothingFound.visibility = View.GONE
                     }
+                    showProgressBar(baseBinding.progressMealSearch)
                 }else if(it.error.isNotBlank()){
-                    fragmentFindYourMealBinding.apply {
-                        this?.nothingFound?.visibility = View.VISIBLE
-                        this?.progressMealSearch?.visibility = View.GONE
-                        this?.mealSearchRecycler?.visibility = View.GONE
+                    with(baseBinding) {
+                        this.nothingFound.visibility = View.VISIBLE
+                        this.mealSearchRecycler.visibility = View.GONE
                     }
+                    hideProgressBar(baseBinding.progressMealSearch)
                 Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                 }else if(it.data?.isNotEmpty() == true) {
                     it.data.let { mealList ->
-                        fragmentFindYourMealBinding.apply {
-                         this?.progressMealSearch?.visibility = View.GONE
-                         this?.mealSearchRecycler?.visibility = View.VISIBLE
-                         this?.nothingFound?.visibility = View.GONE
+                        with(baseBinding) {
+                         this.mealSearchRecycler.visibility = View.VISIBLE
+                         this.nothingFound.visibility = View.GONE
                         }
+                        hideProgressBar(baseBinding.progressMealSearch)
                         findYourMealAdapter.setContentList(mealList.toMutableList())
                     }
                 }else{
-                    fragmentFindYourMealBinding.apply {
-                        this?.nothingFound?.visibility = View.VISIBLE
-                        this?.mealSearchRecycler?.visibility = View.GONE
+                    with(baseBinding){
+                        this.nothingFound.visibility = View.VISIBLE
+                        this.mealSearchRecycler.visibility = View.GONE
                     }
                 }
             }

@@ -5,6 +5,7 @@ import retrofit2.http.Query
 import demo.demodata.model.MealItemsDTO
 
 interface FindYourMealAPi {
+
     @GET("api/json/v1/1/search.php")
     suspend fun getMealItemList(@Query("s")s:String): MealItemsDTO
 

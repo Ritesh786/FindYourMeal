@@ -5,7 +5,6 @@ data class MealItemDetails(
     val image: String,
     val category: String,
     val instructions: String,
-
     val ingredient1: String,
     val ingredient2: String,
     val ingredient3: String,
@@ -26,7 +25,6 @@ data class MealItemDetails(
     val ingredient18: String,
     val ingredient19: String,
     val ingredient20: String,
-
     val measure1: String,
     val measure2: String,
     val measure3: String,

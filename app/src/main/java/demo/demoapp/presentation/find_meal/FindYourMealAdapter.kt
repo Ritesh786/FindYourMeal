@@ -8,8 +8,8 @@ import demo.demoapp.databinding.ViewHolderSearchListBinding
 import demo.demodomain.model.Meal
 
 class FindYourMealAdapter : RecyclerView.Adapter<FindYourMealAdapter.MyViewHolder>() {
-    private var listener :((Meal)->Unit)?=null
 
+    private var listener :((Meal)->Unit)?=null
     private var list = mutableListOf<Meal>()
 
     override fun onCreateViewHolder(

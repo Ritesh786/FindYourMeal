@@ -18,8 +18,6 @@ fun MealDTO.toDomainMealItemDetails(): MealItemDetails {
         image = this.strMealThumb ?: "",
         instructions = this.strInstructions ?: "",
         category = this.strCategory ?: "",
-
-
         ingredient1 = this.strIngredient1 ?: "",
         ingredient2 = this.strIngredient2 ?: "",
         ingredient3 = this.strIngredient3 ?: "",
@@ -40,7 +38,6 @@ fun MealDTO.toDomainMealItemDetails(): MealItemDetails {
         ingredient18 = this.strIngredient18 ?: "",
         ingredient19 = this.strIngredient19 ?: "",
         ingredient20 = this.strIngredient20 ?: "",
-
         measure1 = this.strMeasure1 ?: "",
         measure2 = this.strMeasure2 ?: "",
         measure3 = this.strMeasure3 ?: "",
