@@ -4,12 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
             name="mealDetails"
             type="demo.demodomain.model.MealItemDetails" />
+
+        <variable
+            name="mealDetailsState"
+            type="demo.demoapp.presentation.meal_detail.MealDetailState" />
+
     </data>
 
 
@@ -47,7 +51,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_ProgressBar"
-        android:visibility="gone"
+        android:visibility="@{mealDetailsState.isLoading() == true ? View.VISIBLE : View.GONE}"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <ProgressBar
@@ -62,7 +66,8 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_Detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="@{(mealDetailsState.isLoading() == true || mealDetailsState.error.length() != 0 )? View.GONE : View.VISIBLE}">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

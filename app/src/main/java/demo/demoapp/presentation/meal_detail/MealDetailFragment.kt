@@ -29,27 +29,18 @@ class MealDetailFragment : BaseFragment<FragmentMealDetailBinding>(R.layout.frag
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             mealDetailViewModel.mealDetails.collect{
-                if(it.isLoading == true){
-                    with(baseBinding){
-                        this.nsvDetail.visibility = View.GONE
-                    }
-                    showProgressBar(baseBinding.rlProgressBar)
+                with(baseBinding){
+                    this.mealDetailsState = it
                 }
                 if(it.error?.isNotBlank() == true){
-                    with(baseBinding){
-                        this.nsvDetail.visibility = View.GONE
-                    }
-                    hideProgressBar(baseBinding.rlProgressBar)
                     Toast.makeText(requireContext(),it.error,Toast.LENGTH_SHORT).show()
                 }
                 if(it.data != null){
                     it.data.let { mealItemDetails ->
                         with(baseBinding){
-                            this.nsvDetail.visibility = View.VISIBLE
                             this.mealDetails = mealItemDetails
                         }
                     }
-                    hideProgressBar(baseBinding.rlProgressBar)
                 }
             }
         }
