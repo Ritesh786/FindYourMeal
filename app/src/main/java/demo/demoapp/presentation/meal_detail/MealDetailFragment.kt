@@ -1,13 +1,9 @@
 package demo.demoapp.presentation.meal_detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 
@@ -30,15 +26,19 @@ class MealDetailFragment : BaseFragment<FragmentMealDetailBinding>(R.layout.frag
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             mealDetailViewModel.mealDetails.collect{
                 with(baseBinding){
-                    this.mealDetailsState = it
+                    mealDetailsState = it
                 }
-                if(it.error?.isNotBlank() == true){
-                    Toast.makeText(requireContext(),it.error,Toast.LENGTH_SHORT).show()
+                when {
+                    it.error?.isNotBlank() == true -> {
+                        Toast.makeText(requireContext(),it.error,Toast.LENGTH_SHORT).show()
+                    }
                 }
-                if(it.data != null){
-                    it.data.let { mealItemDetails ->
-                        with(baseBinding){
-                            this.mealDetails = mealItemDetails
+                when {
+                    it.data != null -> {
+                        it.data.let { mealItemDetails ->
+                            with(baseBinding){
+                                mealDetails = mealItemDetails
+                            }
                         }
                     }
                 }

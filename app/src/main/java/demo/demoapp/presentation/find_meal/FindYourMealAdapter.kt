@@ -22,17 +22,16 @@ class FindYourMealAdapter : RecyclerView.Adapter<FindYourMealAdapter.MyViewHolde
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.viewHolder.meal = this.list[position]
-
+        holder.viewHolder.meal = list[position]
         holder.viewHolder.root.setOnClickListener {
             listener?.let {
-                it(this.list[position])
+                it(list[position])
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return this.list.size
+        return list.size
     }
 
     fun setContentList(list: MutableList<Meal>) {

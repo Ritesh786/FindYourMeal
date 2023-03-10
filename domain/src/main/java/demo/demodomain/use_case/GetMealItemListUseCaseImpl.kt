@@ -6,8 +6,6 @@ import demo.democommon.Resource
 import demo.democommon.getException
 import demo.demodomain.model.Meal
 import demo.demodomain.repository.FindYourMealRepository
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class GetMealItemListUseCaseImpl

@@ -33,6 +33,4 @@ class MealDetailViewModel @Inject constructor(private val getMealDetailUseCase: 
         }.launchIn(viewModelScope)
     }
 
-
-
 }

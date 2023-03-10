@@ -1,7 +1,6 @@
 package demo.demodata.data
 
 import demo.demodata.model.MealDTO
-import demo.demodomain.model.MealItemDetails
 
 fun getDummyMealDto() = MealDTO(
     idMeal = "1234",

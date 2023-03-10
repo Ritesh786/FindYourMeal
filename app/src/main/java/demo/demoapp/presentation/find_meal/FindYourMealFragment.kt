@@ -32,40 +32,45 @@ class FindYourMealFragment : BaseFragment<FragmentFindYourMealBinding>(R.layout.
               return false
            }
        })
+
         baseBinding.mealSearchRecycler.apply {
             adapter = findYourMealAdapter
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             findYourMealViewModel.findYourMealList.collect{
-                if(it.isLoading){
-                    with(baseBinding){
-                        this.mealSearchRecycler.visibility = View.GONE
+                when {
+                    it.isLoading -> {
+                        with(baseBinding){
+                            mealSearchRecycler.visibility = View.GONE
+                        }
+                        showView(baseBinding.progressMealSearch)
+                        hideView(baseBinding.nothingFound)
                     }
-                    showView(baseBinding.progressMealSearch)
-                    hideView(baseBinding.nothingFound)
-                }else if(it.error.isNotBlank()){
-                    with(baseBinding) {
-                        this.mealSearchRecycler.visibility = View.GONE
-                    }
-                    hideView(baseBinding.progressMealSearch)
-                    showView(baseBinding.nothingFound)
-                Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
-                }else if(it.data?.isNotEmpty() == true) {
-                    it.data.let { mealList ->
+                    it.error.isNotBlank() -> {
                         with(baseBinding) {
-                         this.mealSearchRecycler.visibility = View.VISIBLE
-                         this.nothingFound.visibility = View.GONE
+                            mealSearchRecycler.visibility = View.GONE
                         }
                         hideView(baseBinding.progressMealSearch)
-                        hideView(baseBinding.nothingFound)
-                        findYourMealAdapter.setContentList(mealList.toMutableList())
+                        showView(baseBinding.nothingFound)
+                        Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT).show()
                     }
-                }else{
-                    with(baseBinding){
-                        this.mealSearchRecycler.visibility = View.GONE
+                    it.data?.isNotEmpty() == true -> {
+                        it.data.let { mealList ->
+                            with(baseBinding) {
+                                mealSearchRecycler.visibility = View.VISIBLE
+                            }
+                            hideView(baseBinding.progressMealSearch)
+                            hideView(baseBinding.nothingFound)
+                            findYourMealAdapter.setContentList(mealList.toMutableList())
+                        }
                     }
-                    showView(baseBinding.nothingFound)
+                    else -> {
+                        with(baseBinding){
+                            mealSearchRecycler.visibility = View.GONE
+                        }
+                        showView(baseBinding.nothingFound)
+                    }
                 }
             }
         }
