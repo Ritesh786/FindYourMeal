@@ -79,7 +79,5 @@ class FindYourMealFragment : BaseFragment<FragmentFindYourMealBinding>(R.layout.
             val bundle = bundleOf(getString(R.string.mealId) to it.mealId)
              findNavController().navigate(R.id.action_findYourMealFragment_to_mealDetailFragment,bundle)
         }
-
     }
-
 }

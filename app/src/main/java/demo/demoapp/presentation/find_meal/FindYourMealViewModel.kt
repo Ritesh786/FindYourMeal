@@ -33,5 +33,4 @@ class FindYourMealViewModel
             }
         }.launchIn(viewModelScope)
     }
-
 }

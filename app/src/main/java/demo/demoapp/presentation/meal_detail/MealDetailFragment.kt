@@ -48,7 +48,5 @@ class MealDetailFragment : BaseFragment<FragmentMealDetailBinding>(R.layout.frag
         baseBinding.detailsBackArrow.setOnClickListener {
             findNavController().popBackStack()
         }
-
     }
-
 }

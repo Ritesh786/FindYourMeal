@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MealDetailViewModel @Inject constructor(private val getMealDetailUseCase: GetMealDetailUseCase): ViewModel(){
 
-    private val _mealDetails = MutableStateFlow<MealDetailState>(MealDetailState())
+    private val _mealDetails = MutableStateFlow(MealDetailState())
     val mealDetails : StateFlow<MealDetailState> = _mealDetails
 
     fun getMealDetails(id: String){
@@ -32,5 +32,4 @@ class MealDetailViewModel @Inject constructor(private val getMealDetailUseCase: 
             }
         }.launchIn(viewModelScope)
     }
-
 }

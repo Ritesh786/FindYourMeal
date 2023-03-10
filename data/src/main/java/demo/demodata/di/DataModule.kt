@@ -27,5 +27,4 @@ object DataModule {
     fun provideFindYourMealRepository(findYourMealAPi: FindYourMealAPi): FindYourMealRepository {
         return FindYourMealRepositoryImpl(findYourMealAPi)
     }
-
 }

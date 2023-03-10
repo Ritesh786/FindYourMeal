@@ -16,5 +16,4 @@ class FindYourMealRepositoryImpl(private val findYourMealAPi: FindYourMealAPi) :
     override suspend fun getMealDetails(id: String): MealItemDetails {
         return findYourMealAPi.getMealDetails(id).meals.first().toDomainMealItemDetails()
     }
-
 }

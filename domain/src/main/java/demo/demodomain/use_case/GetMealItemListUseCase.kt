@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetMealItemListUseCase {
 
-    operator fun invoke(s:String): Flow<Resource<List<Meal>>>
+    operator fun invoke(name:String): Flow<Resource<List<Meal>>>
 }
