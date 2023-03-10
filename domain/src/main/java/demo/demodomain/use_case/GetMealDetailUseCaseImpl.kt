@@ -9,7 +9,7 @@ import demo.demodomain.repository.FindYourMealRepository
 
 import javax.inject.Inject
 
-class GetMealDetailUseCaseImpl @Inject constructor(private val findYourMealRepository: FindYourMealRepository) : GetMealDetailUseCase{
+internal class GetMealDetailUseCaseImpl @Inject constructor(private val findYourMealRepository: FindYourMealRepository) : GetMealDetailUseCase{
 
     override operator fun invoke(id:String):Flow<Resource<MealItemDetails>> = flow {
         try {
