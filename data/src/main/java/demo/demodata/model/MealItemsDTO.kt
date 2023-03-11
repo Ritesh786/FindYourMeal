@@ -1,5 +1,5 @@
 package demo.demodata.model
 
-data class MealItemsDTO(
+internal data class MealItemsDTO(
     val meals: List<MealDTO>
 )

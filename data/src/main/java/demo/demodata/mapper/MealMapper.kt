@@ -4,7 +4,7 @@ import demo.demodata.model.MealDTO
 import demo.demodomain.model.Meal
 import demo.demodomain.model.MealItemDetails
 
-fun MealDTO.toDomainMeal(): Meal {
+internal fun MealDTO.toDomainMeal(): Meal {
     return Meal(
         mealId = idMeal ?: "",
         name =  strMeal ?: "",
@@ -12,7 +12,7 @@ fun MealDTO.toDomainMeal(): Meal {
     )
 }
 
-fun MealDTO.toDomainMealItemDetails(): MealItemDetails {
+internal fun MealDTO.toDomainMealItemDetails(): MealItemDetails {
     return MealItemDetails(
         name = strMeal ?: "",
         image = strMealThumb ?: "",

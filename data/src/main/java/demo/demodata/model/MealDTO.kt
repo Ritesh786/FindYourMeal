@@ -1,6 +1,6 @@
 package demo.demodata.model
 
-data class MealDTO(
+internal data class MealDTO(
     val dateModified: String?,
     val idMeal: String?,
     val strArea: String?,
